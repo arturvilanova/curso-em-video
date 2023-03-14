@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgb(32, 42, 56);
+} 
+
+main {
+    width: max-content;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+iframe {
+    display: block;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+}
