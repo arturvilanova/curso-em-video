@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+body {
+    background-color: aquamarine;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h1 {
+    color: goldenrod;
+}
+
+h1#principal {
+    text-align: center;
+    background-color: royalblue;
+    color: white;
+}
+
+h2 {
+    color: indianred;
+}
+
+.basico {
+    background-color: sandybrown;
+    color: white;
+}
+
+.intermediario {
+    background-color: orange;
+    color: white;
+}
+
+.avancado {
+    background-color: tomato;
+    color: white;
+}
