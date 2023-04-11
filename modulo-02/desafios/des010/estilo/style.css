@@ -1,5 +1,125 @@
 @charset "UTF8";
 
-body {
-    background-color: #c5ebd6;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@font-face {
+    font-family: 'Android';
+    src: url('../fontes/idroid.otf') format('opentype');
+    font-weight: normal;
 }
+
+:root {
+    --cor00: #c5ebd6;
+    --cor01: #83e1ad;
+    --cor02: #3ddc84;
+    --cor03: #2fa866;
+    --cor04: #1a5c37;
+    --cor05: #063d1e;
+
+    --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
+    --fonte-destaque: 'Bebas Neue', cursive;
+    --fonte-android: 'Android', cursive;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: var(--cor00);
+    font-family: var(--fonte-padrao);
+}
+
+header {
+    background-color: var(--cor04);
+    min-height: 150px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+header > h1 {
+    color: white;
+    font-family: var(--fonte-destaque);
+    font-size: 3em;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 2px #00000063;
+}
+
+header p {
+    color: white;
+    font-family: var(--fonte-padrao);
+    font-size: 1.2em;
+    max-width: 500px;
+    padding: 0px 10px 0px 10px;
+    margin: auto;
+    text-shadow: 2px 2px 2px #00000063;
+
+}
+
+nav {
+    background-color: var(--cor05);
+    padding: 10px;
+    box-shadow: -0.5px 3px 2px #0000001c;
+}
+
+nav a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition-duration: 0.2s;
+}
+
+nav a:hover {
+    background-color: var(--cor03);
+    color: var(--cor05);
+}
+
+main {
+    background-color: white;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: 1px 10px 10px #0000001c;
+    border-radius: 0px 0px 10px 10px;
+}
+
+main h1, h2 {
+    color: var(--cor05);
+    font-family: var(--fonte-android);
+}
+
+main p {
+    margin: 15px 0px;
+    text-align: justify;
+    text-indent: 30px;
+    line-height: 2em;
+    font-size: 1.1em;
+}
+
+main strong {
+    color: var(--cor04);
+    font-weight: bold;
+    background-color: var(--cor01);
+}
+
+main img {
+    width: 100%;
+}
+
+main.img-pequena {
+    max-width: 350px;
+    display: block;
+    margin: auto;
+}
+
+footer {
+    background-color: var(--cor05);
+    color: white;
+}
+
+
+
