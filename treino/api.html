@@ -2,33 +2,84 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Galeria - Lindos Horizontes</title>
-
-  <!-- Lightbox CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" rel="stylesheet" />
-
+  <title>Galeria com Modal - Lindos Horizontes</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: #f4f4f4;
       padding: 20px;
-      background: #f7f7f7;
     }
+
     h1 {
       margin-bottom: 20px;
     }
+
     .galeria {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 15px;
     }
-    .galeria a img {
+
+    .galeria img {
       width: 100%;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
       transition: transform 0.2s ease;
     }
-    .galeria a img:hover {
+
+    .galeria img:hover {
       transform: scale(1.03);
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      margin: 5% auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      background-color: white;
+      padding: 10px;
+      border-radius: 10px;
+      max-width: 90%;
+      max-height: 90%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .fechar {
+      font-size: 20px;
+      font-weight: bold;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      align-self: flex-end;
+      margin-bottom: 10px;
+    }
+
+    .fechar:hover {
+      background: #c0392b;
     }
   </style>
 </head>
@@ -37,24 +88,43 @@
   <h1>Minhas Fotos - Lindos Horizontes 📷</h1>
 
   <div class="galeria">
-    <a href="https://images.pexels.com/photos/355747/pexels-photo-355747.jpeg" data-lightbox="galeria" data-title="Montanhas ao entardecer">
-      <img src="https://images.pexels.com/photos/355747/pexels-photo-355747.jpeg?auto=compress&h=300" alt="Montanhas ao entardecer">
-    </a>
-    <a href="https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg" data-lightbox="galeria" data-title="Pôr do sol nas montanhas">
-      <img src="https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg?auto=compress&h=300" alt="Pôr do sol nas montanhas">
-    </a>
-    <a href="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg" data-lightbox="galeria" data-title="Campo florido">
-      <img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&h=300" alt="Campo florido">
-    </a>
-    <a href="https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg" data-lightbox="galeria" data-title="Árvore solitária">
-      <img src="https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&h=300" alt="Árvore solitária">
-    </a>
-    <a href="https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg" data-lightbox="galeria" data-title="Reflexos no rio">
-      <img src="https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&h=300" alt="Reflexos no rio">
-    </a>
+    <img src="https://images.pexels.com/photos/355747/pexels-photo-355747.jpeg?auto=compress&h=300" alt="Montanhas ao entardecer">
+    <img src="https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg?auto=compress&h=300" alt="Pôr do sol nas montanhas">
+    <img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&h=300" alt="Campo florido">
   </div>
 
-  <!-- Lightbox JS -->
-  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
+  <!-- MODAL -->
+  <div id="meuModal" class="modal">
+    <div class="modal-content">
+      <button class="fechar" onclick="fecharModal()">×</button>
+      <img id="imagemModal" src="" alt="Imagem ampliada">
+    </div>
+  </div>
+
+  <script>
+    const imagens = document.querySelectorAll('.galeria img');
+    const modal = document.getElementById('meuModal');
+    const imagemModal = document.getElementById('imagemModal');
+
+    imagens.forEach(img => {
+      img.addEventListener('click', () => {
+        imagemModal.src = img.src.replace('&h=300', ''); // mostra a imagem original
+        modal.style.display = 'block';
+      });
+    });
+
+    function fecharModal() {
+      modal.style.display = 'none';
+      imagemModal.src = '';
+    }
+
+    // Fecha o modal se clicar fora da imagem
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        fecharModal();
+      }
+    }
+  </script>
+
 </body>
 </html>
