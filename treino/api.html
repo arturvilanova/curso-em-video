@@ -2,66 +2,59 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Galeria Ordenada - Lindos Horizontes</title>
+  <title>Galeria - Lindos Horizontes</title>
+
+  <!-- Lightbox CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css" rel="stylesheet" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background: #f4f4f4;
+      background: #f7f7f7;
+    }
+    h1 {
+      margin-bottom: 20px;
     }
     .galeria {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 15px;
     }
-    .galeria img {
+    .galeria a img {
       width: 100%;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
     }
-    h1 {
-      margin-bottom: 20px;
+    .galeria a img:hover {
+      transform: scale(1.03);
     }
   </style>
 </head>
 <body>
 
-  <h1>Minhas Fotos Favoritas 📷</h1>
-  <div class="galeria" id="galeria"></div>
+  <h1>Minhas Fotos - Lindos Horizontes 📷</h1>
 
-  <script>
-    const fotosPersonalizadas = [
-      {
-        src: 'https://images.pexels.com/photos/30308826/pexels-photo-30308826.jpeg',
-        alt: 'Pôr do sol nas montanhas'
-      },
-      {
-        src: 'https://images.pexels.com/photos/30300447/pexels-photo-30300447.jpeg',
-        alt: 'Campo florido ao entardecer'
-      },
-      {
-        src: 'https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg',
-        alt: 'Árvore solitária em paisagem dourada'
-      },
-      {
-        src: 'https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg',
-        alt: 'Rio calmo com reflexos do céu'
-      },
-      {
-        src: 'https://images.pexels.com/photos/355747/pexels-photo-355747.jpeg',
-        alt: 'Montanhas e céu rosa'
-      }
-    ];
+  <div class="galeria">
+    <a href="https://images.pexels.com/photos/355747/pexels-photo-355747.jpeg" data-lightbox="galeria" data-title="Montanhas ao entardecer">
+      <img src="https://images.pexels.com/photos/355747/pexels-photo-355747.jpeg?auto=compress&h=300" alt="Montanhas ao entardecer">
+    </a>
+    <a href="https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg" data-lightbox="galeria" data-title="Pôr do sol nas montanhas">
+      <img src="https://images.pexels.com/photos/624015/pexels-photo-624015.jpeg?auto=compress&h=300" alt="Pôr do sol nas montanhas">
+    </a>
+    <a href="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg" data-lightbox="galeria" data-title="Campo florido">
+      <img src="https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&h=300" alt="Campo florido">
+    </a>
+    <a href="https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg" data-lightbox="galeria" data-title="Árvore solitária">
+      <img src="https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&h=300" alt="Árvore solitária">
+    </a>
+    <a href="https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg" data-lightbox="galeria" data-title="Reflexos no rio">
+      <img src="https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg?auto=compress&h=300" alt="Reflexos no rio">
+    </a>
+  </div>
 
-    const galeria = document.getElementById('galeria');
-
-    fotosPersonalizadas.forEach(foto => {
-      const img = document.createElement('img');
-      img.src = foto.src;
-      img.alt = foto.alt;
-      galeria.appendChild(img);
-    });
-  </script>
-
+  <!-- Lightbox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
 </body>
 </html>
