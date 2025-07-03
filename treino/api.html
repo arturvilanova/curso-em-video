@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Galeria - Lindos Horizontes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f7f7f7;
+    }
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    #verMais {
+      padding: 10px 20px;
+      background-color: #2ecc71;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none; /* Esconde o botão no começo */
+    }
+    #verMais:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Fotos da Coleção "Perfeitas" 📸</h1>
+  <div class="galeria" id="galeria"></div>
+  <button id="verMais">Ver mais fotos</button>
+
+  <script>
+    const API_KEY = 'phGTvHPg2cSkya17VXetHFsE0QtL7SzspzRSYIeceliJds8tgFc7tKdl';
+    const COLECAO_ID = 'datk2j0';
+    let nextPage = `https://api.pexels.com/v1/collections/${COLECAO_ID}?per_page=10`;
+    let carregouPrimeira = false;
+
+    async function carregarFotos() {
+      try {
+        const response = await fetch(nextPage, {
+          headers: {
+            Authorization: API_KEY
+          }
+        });
+        const data = await response.json();
+        const galeria = document.getElementById('galeria');
+
+        data.media.forEach(item => {
+          if (item.src && item.src.medium) {
+            const img = document.createElement('img');
+            img.src = item.src.medium;
+            img.alt = item.alt || 'Foto da coleção';
+            galeria.appendChild(img);
+          }
+        });
+
+        if (data.next_page) {
+          nextPage = data.next_page + '&per_page=10';
+
+          // Mostra o botão apenas após a primeira carga
+          if (!carregouPrimeira) {
+            document.getElementById('verMais').style.display = 'inline-block';
+            carregouPrimeira = true;
+          }
+        } else {
+          document.getElementById('verMais').style.display = 'none';
+        }
+
+      } catch (error) {
+        console.error('Erro ao carregar fotos:', error);
+      }
+    }
+
+    document.getElementById('verMais').addEventListener('click', carregarFotos);
+    carregarFotos(); // Carrega as 10 primeiras
+  </script>
+
+</body>
+</html>
